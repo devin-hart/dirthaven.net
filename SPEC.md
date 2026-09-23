@@ -13,7 +13,7 @@
 - **Creative Space**: Music compositions, audio experiments, visual artwork, and assorted creative projects.
 - **Radical Simplicity**: Fast static delivery, low cognitive overhead, zero bloat via Astro SSG.
 - **Retro-Tactile Atmosphere**: Carrying forward the nostalgic late 90s / early 2000s cyber-gothic aesthetic established by `oneclickkill.net` with Darkthrone-inspired typography.
-- **LLM Operational Spec Host**: Privately hosts the AI-Persona operational specification (`/ai-persona.md`, `/ai-persona.txt`) for reference without search indexing or crawling.
+- **LLM Operational Spec Host**: Privately hosts the AI-Persona operational specification at `ai.dirthaven.net` (and `/ai-persona.md`, `/ai-persona.txt`) for reference without search indexing or crawling.
 - **Longevity & Independence**: Markdown-driven content that remains readable and portable for decades.
 
 ---
