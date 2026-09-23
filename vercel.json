@@ -19,7 +19,7 @@
           "value": "ai.dirthaven.net"
         }
       ],
-      "destination": "/ai"
+      "destination": "/ai/index.html"
     }
   ]
 }
