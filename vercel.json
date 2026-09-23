@@ -23,8 +23,8 @@
           "value": "ai.dirthaven.net"
         }
       ],
-      "destination": "/ai-persona.md",
-      "permanent": true
+      "destination": "/ai-persona",
+      "permanent": false
     }
   ]
 }
