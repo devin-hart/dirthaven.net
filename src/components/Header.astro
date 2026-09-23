@@ -1,0 +1,50 @@
+---
+import { Image } from 'astro:assets';
+import dirthavenLogo from '../assets/dirthaven-logo.png';
+
+interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = '/' } = Astro.props;
+---
+
+<header class="site-header">
+  <h1 class="logo-wrap">
+    <a href="/" title="dirthaven.net - Home">
+      <Image 
+        src={dirthavenLogo} 
+        alt="dirthaven" 
+        loading="eager" 
+        class="header-logo"
+      />
+    </a>
+  </h1>
+
+  <nav class="site-nav">
+    <div class="nav-brand">
+      <a href="/">dirt[haven]</a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="/" class={currentPath === '/' ? 'active' : ''}>[home]</a></li>
+      <li><a href="/about" class={currentPath === '/about' ? 'active' : ''}>[about]</a></li>
+      <li><a href="/rss.xml">[rss]</a></li>
+    </ul>
+  </nav>
+</header>
+
+<style>
+  .site-header {
+    margin-bottom: 1.5rem;
+  }
+  .header-logo {
+    display: block;
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.95));
+  }
+  .nav-links a.active {
+    color: #fff !important;
+    text-decoration: underline;
+  }
+</style>

@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="About" description="About dirthaven.net and Devin Hart.">
+  <div class="dh-card">
+    <div class="dh-card-head">
+      <strong>About dirthaven.net</strong>
+      <small>system/info</small>
+    </div>
+    <div class="dh-card-body">
+      <article class="prose">
+        <h2>Origins</h2>
+        <p>
+          <strong>dirthaven.net</strong> is the personal web domain of Devin Hart.
+        </p>
+        <p>
+          It succeeds previous online projects—including the Quake III Arena Instagib rail server site 
+          <a href="https://github.com/devin-hart/oneclickkill.net" target="_blank" rel="noopener noreferrer">one[click]kill.net</a>.
+        </p>
+
+        <h2>Tech Stack</h2>
+        <ul>
+          <li><strong>Framework:</strong> <a href="https://astro.build" target="_blank" rel="noopener noreferrer">Astro</a> (Static Site Generation, Island architecture)</li>
+          <li><strong>Content:</strong> Markdown with frontmatter schema validation</li>
+          <li><strong>Aesthetic:</strong> Y2K dark minimalism, custom glass cards, compact typography</li>
+          <li><strong>Deployment:</strong> Static HTML hosted on edge CDN</li>
+        </ul>
+
+        <h2>Connect</h2>
+        <p>
+          Reach out directly via email at <a href="mailto:devin@dirthaven.net">devin@dirthaven.net</a>, or check out my code on <a href="https://github.com/devin-hart" target="_blank" rel="noopener noreferrer">GitHub</a>.
+        </p>
+      </article>
+
+      <div style="margin-top: 1.5rem;">
+        <a href="/" class="dh-btn">[&larr; return home]</a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

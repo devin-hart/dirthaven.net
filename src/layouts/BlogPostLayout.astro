@@ -1,0 +1,77 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  updatedDate?: Date;
+  tags?: string[];
+}
+
+const { title, description, pubDate, updatedDate, tags = [] } = Astro.props;
+
+const formattedPubDate = pubDate.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="dh-card">
+    <div class="dh-card-head">
+      <a href="/" class="back-link">[&larr; return home]</a>
+      <time datetime={pubDate.toISOString()}>{formattedPubDate}</time>
+    </div>
+
+    <div class="dh-card-body">
+      <article class="prose">
+        <header class="article-header">
+          <h1>{title}</h1>
+          {tags && tags.length > 0 && (
+            <div class="article-tags">
+              {tags.map((tag) => (
+                <a href={`/tags/${tag}`} class="dh-chip">#{tag}</a>
+              ))}
+            </div>
+          )}
+        </header>
+
+        <hr />
+
+        <slot />
+      </article>
+
+      <div class="article-footer">
+        <a href="/" class="back-link">[&larr; back to all posts]</a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .back-link {
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .article-header {
+    margin-bottom: 1rem;
+  }
+  .article-header h1 {
+    font-size: 20px;
+    margin-top: 0.25rem;
+    margin-bottom: 0.5rem;
+  }
+  .article-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 6px;
+  }
+  .article-footer {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+</style>

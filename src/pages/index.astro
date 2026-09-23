@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PostCard from '../components/PostCard.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<BaseLayout title="dirthaven.net" description="Personal blog, tech notes, and project experiments.">
+  <div class="intro-block">
+    <p>
+      Welcome to <strong>dirt[haven]</strong>. A personal digital notebook for software engineering, web experiments, and notes from the underground.
+    </p>
+    <p>
+      Built static, fast, and minimal. Carried over from the dark cyber aesthetic of <a href="https://github.com/devin-hart/oneclickkill.net" target="_blank" rel="noopener noreferrer">one[click]kill</a>.
+    </p>
+  </div>
+
+  <section class="dh-card">
+    <div class="dh-card-head">
+      <strong>Recent Entries</strong>
+      <small>{posts.length} article{posts.length === 1 ? '' : 's'}</small>
+    </div>
+    <div class="posts-list">
+      {posts.map((post) => (
+        <PostCard
+          title={post.data.title}
+          description={post.data.description}
+          pubDate={post.data.pubDate}
+          slug={post.id}
+          tags={post.data.tags}
+        />
+      ))}
+    </div>
+  </section>
+
+  <section class="dh-card">
+    <div class="dh-card-head">
+      <strong>Quick Dispatch</strong>
+      <small>dirthaven status</small>
+    </div>
+    <div class="dh-card-body">
+      <p style="margin-bottom: 0.5rem;">
+        Currently transitioning from legacy servers to lightweight static architecture. 
+        Read more in the <a href="/about">[about]</a> section or subscribe via <a href="/rss.xml">[rss]</a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .intro-block {
+    margin-bottom: 1.25rem;
+  }
+  .posts-list {
+    display: flex;
+    flex-direction: column;
+  }
+</style>
