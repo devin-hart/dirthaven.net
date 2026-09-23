@@ -1,4 +1,19 @@
 {
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow, noarchive"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
+      ]
+    }
+  ],
   "redirects": [
     {
       "source": "/",
@@ -9,7 +24,7 @@
         }
       ],
       "destination": "/ai-persona.md",
-      "permanent": false
+      "permanent": true
     }
   ]
 }

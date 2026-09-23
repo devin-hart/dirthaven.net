@@ -1,4 +1,2 @@
 User-agent: *
-Disallow: /ai-persona
-Disallow: /ai-persona.md
-Disallow: /ai-persona.txt
+Allow: /
