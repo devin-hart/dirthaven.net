@@ -7,13 +7,13 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
-<BaseLayout title="dirthaven.net" description="Personal blog, tech notes, and project experiments.">
+<BaseLayout title="dirthaven.net" description="Music, art, creative projects, and notes from the underground.">
   <div class="intro-block">
     <p>
-      Welcome to <strong>dirt[haven]</strong>. A personal digital notebook for software engineering, web experiments, and notes from the underground.
+      Welcome to <strong>dirt[haven]</strong>. A music and art blog, creative dumping ground, and digital outpost for random projects.
     </p>
     <p>
-      Built static, fast, and minimal. Carried over from the dark cyber aesthetic of <a href="https://github.com/devin-hart/oneclickkill.net" target="_blank" rel="noopener noreferrer">one[click]kill</a>.
+      Built static, fast, and minimal. Inheriting the raw dark aesthetic of <a href="https://github.com/devin-hart/oneclickkill.net" target="_blank" rel="noopener noreferrer">one[click]kill</a>.
     </p>
   </div>
 
