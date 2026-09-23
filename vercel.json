@@ -1,0 +1,14 @@
+{
+  "rewrites": [
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "ai.dirthaven.net"
+        }
+      ],
+      "destination": "/ai-persona.md"
+    }
+  ]
+}
