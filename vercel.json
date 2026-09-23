@@ -4,17 +4,13 @@
       "source": "/(.*)",
       "headers": [
         {
-          "key": "X-Robots-Tag",
-          "value": "noindex, nofollow, noarchive"
-        },
-        {
           "key": "Access-Control-Allow-Origin",
           "value": "*"
         }
       ]
     }
   ],
-  "redirects": [
+  "rewrites": [
     {
       "source": "/",
       "has": [
@@ -23,8 +19,7 @@
           "value": "ai.dirthaven.net"
         }
       ],
-      "destination": "/ai-persona",
-      "permanent": false
+      "destination": "/ai"
     }
   ]
 }
