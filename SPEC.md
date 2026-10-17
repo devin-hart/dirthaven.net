@@ -13,7 +13,7 @@
 - **Creative Space**: Music compositions, audio experiments, visual artwork, and assorted creative projects.
 - **Radical Simplicity**: Fast static delivery, low cognitive overhead, zero bloat via Astro SSG.
 - **Retro-Tactile Atmosphere**: Carrying forward the nostalgic late 90s / early 2000s cyber-gothic aesthetic established by `oneclickkill.net` with Darkthrone-inspired typography.
-- **LLM Operational Spec Host**: Privately hosts the AI-Persona operational specification at `ai.dirthaven.net` (and `/ai-persona.md`, `/ai-persona.txt`) for reference without search indexing or crawling.
+- **LLM Operational Spec Host**: Hosts the coding-agent operating instructions as plain text at `/ai` (also `ai.dirthaven.net`). Single source: `public/ai.md`. Old `/ai-persona*` and `/ai.txt` URLs redirect to `/ai`.
 - **Longevity & Independence**: Markdown-driven content that remains readable and portable for decades.
 
 ---
@@ -50,7 +50,7 @@ All UI additions, layouts, and components must adhere to these design tenets:
 ## 3. Architecture & Technical Rules
 
 - **Framework**: Astro 5 (Static Site Generation mode).
-- **Runtime**: Node.js 20 LTS (`C:\Users\wizardbeard\.nvm\versions\node\v20.18.0`).
+- **Runtime**: Node.js 18.20.8+ (Astro 5 minimum).
 - **Zero Client JS**: Pure static HTML & CSS output. JavaScript is only introduced if an interactive widget strictly requires it.
 - **Content Collections**: All articles live in `src/content/blog/` as `.md` or `.mdx` files.
 - **Syndication**: RSS feed automatically generated at `src/pages/rss.xml.ts` &rarr; `/rss.xml`.
@@ -102,7 +102,7 @@ draft: false # Set true to exclude from production build
 - [ ] Webring / Friendly links widget.
 
 ### Phase 5: Production Deployment & CI/CD
-- [ ] Choose deployment target (Vercel, Cloudflare Pages, or GitHub Pages).
+- [x] Choose deployment target: Vercel.
 - [ ] Set up automated Git-push deployment workflow.
 - [ ] Hook up custom apex domain `dirthaven.net` with SSL.
 
@@ -112,7 +112,20 @@ draft: false # Set true to exclude from production build
 
 *This section captures ongoing rules, conventions, and personal preferences specified by the site owner:*
 
-1. **No Babysitting**: Execute all tasks end-to-end without pausing for approval steps or confirmations.
+1. **Clarify, Then Execute**: Ask when a request is unclear; once it's clear, run end-to-end without progress check-ins.
 2. **Preserve the Vibe**: Maintain the dark aesthetic, purple bracketed links, and compact 520px column.
 3. **Keep Code Lightweight**: Prefer standard HTML/CSS over heavyweight UI component libraries.
 4. **Draft Safety**: Never publish posts with `draft: true` into RSS or production index listings.
+
+---
+
+## 7. Decisions Log
+
+*One line per decision: date — decision — why.*
+
+- 2026-09-22 — Astro 5 static output, Markdown content collections — fast, zero client JS, portable content.
+- 2026-09-22 — Port visual identity from oneclickkill.net — continuity with the previous site.
+- 2026-09-23 — Deploy on Vercel — `vercel.json` handles headers and host-based redirects for `ai.dirthaven.net`.
+- 2026-10-16 — Agent instructions live in one file (`public/ai.md`), served as plain text at `/ai` — eight hand-maintained copies had drifted; plain text is easiest to copy into agents.
+- 2026-10-16 — Old `/ai-persona*` and `/ai.txt` URLs redirect to `/ai` — keep existing links working.
+- 2026-10-16 — Agents ask when unclear, then run to completion — replaces "no babysitting," which agents read as "never ask questions."

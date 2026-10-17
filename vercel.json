@@ -8,6 +8,15 @@
           "value": "*"
         }
       ]
+    },
+    {
+      "source": "/(ai|ai\\.md)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/plain; charset=utf-8"
+        }
+      ]
     }
   ],
   "redirects": [
@@ -21,6 +30,26 @@
       ],
       "destination": "/ai",
       "permanent": false
+    },
+    {
+      "source": "/ai-persona",
+      "destination": "/ai",
+      "permanent": true
+    },
+    {
+      "source": "/ai-persona.md",
+      "destination": "/ai",
+      "permanent": true
+    },
+    {
+      "source": "/ai-persona.txt",
+      "destination": "/ai",
+      "permanent": true
+    },
+    {
+      "source": "/ai.txt",
+      "destination": "/ai",
+      "permanent": true
     }
   ]
 }
