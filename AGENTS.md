@@ -23,7 +23,6 @@ Project size: **Ongoing** → AGENTS.md + SPEC.md + git.
 | `src/pages/about.astro` | About page. |
 | `src/pages/blog/[...slug].astro` | Individual post route. |
 | `src/pages/tags/[tag].astro` | Posts filtered by tag. |
-| `src/pages/rss.xml.ts` | RSS feed at `/rss.xml`. |
 | `src/content.config.ts` | Blog frontmatter schema (Zod). |
 | `src/content/blog/` | Blog posts (`.md`/`.mdx`). |
 | `src/layouts/BaseLayout.astro` | Page shell: head, header, footer. |
@@ -31,14 +30,15 @@ Project size: **Ongoing** → AGENTS.md + SPEC.md + git.
 | `src/components/Header.astro` | Logo + nav. |
 | `src/components/Footer.astro` | Pipe-separated footer links. |
 | `src/components/PostCard.astro` | Post preview card for listings. |
-| `src/styles/global.css` | All site styles and color tokens (372 lines — split when next edited). |
-| `src/assets/` | Logo and background images. |
+| `src/styles/global.css` | All site styles and color tokens. |
+| `src/assets/` | Logo (`dirthaven-logo.svg`, procedurally generated vein-web wordmark); `dirthaven-logo.png/.jpg`, `dirt-bg.jpg`, `skull-bg.webp` are unused legacy. |
 | `vercel.json` | Headers, plain-text type for `/ai`, `ai.dirthaven.net` + legacy `/ai-persona*` redirects. |
 | `SPEC.md` | Mission, design system, roadmap, decisions log. |
 
 ## Styling
-Nostalgic dark-mode minimalism inspired by `oneclickkill.net` (full tokens in SPEC.md §2):
-- Pure black background with subtle textures and 1px text-shadows (`1px 1px 2px #000`).
-- Signature purple bracketed links (`[text]`).
-- Translucent frosted glass cards (`.dh-card`, `rgba(0,0,0,0.35)`, `backdrop-filter: blur(6px)`).
+Raw black metal demo-tape (full tokens in SPEC.md §2):
+- Washed-out black content strip down the middle; muted red (`#5e1a22`) bleeding out both sides; SVG photocopy grain. No background images.
+- Muted blood-red bracketed links (`[text]`, `#c4434f`), bone text (`#d9d2c5`).
+- Typewriter font (Special Elite) for card headers, post titles, prose `h2`.
+- Flat `.dh-card` panels with faded red borders; no glass/blur.
 - Pipe-separated compact inline navigation and footers.

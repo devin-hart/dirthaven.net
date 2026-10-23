@@ -11,7 +11,7 @@ interface Props {
 
 const {
   title = 'dirthaven.net',
-  description = 'Personal blog, projects, and tech notes.',
+  description = 'Music, art, and creative projects from the underground.',
   image = '/images/og-image.jpg',
 } = Astro.props;
 
@@ -24,7 +24,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://dirthave
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <link rel="alternate" type="application/rss+xml" title="dirthaven.net RSS Feed" href="/rss.xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet" />
     
     <title>{title === 'dirthaven.net' ? title : `${title} · dirthaven.net`}</title>
     <meta name="title" content={title} />

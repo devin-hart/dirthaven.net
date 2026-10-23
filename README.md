@@ -1,14 +1,13 @@
 # dirthaven.net
 
-A minimalist, high-contrast personal blog powered by [Astro](https://astro.build), inheriting the dark cyber-gothic aesthetic of [oneclickkill.net](https://github.com/devin-hart/oneclickkill.net).
+A minimalist music and art blog powered by [Astro](https://astro.build), styled like a raw black metal demo tape.
 
 ## Features
 
-- **Styling**: `#000` base with subtle dark texture, 1px text-shadows, signature purple bracket links, and translucent glassmorphism cards.
+- **Styling**: Washed-out black content strip, muted red bleed on both sides, photocopy grain, red bracket links, typewriter headings.
 - **Specification**: Complete design rules, architecture, and goals roadmap tracked in [SPEC.md](./SPEC.md).
 - **Content Engine**: Astro 5 Content Collections with Zod schema validation.
 - **Static & Fast**: Zero client JavaScript by default, fast static HTML/CSS output.
-- **Syndication**: Automatic RSS 2.0 feed at `/rss.xml`.
 - **Taxonomy**: Filter articles by tag (`/tags/[tag]`).
 
 ## Quick Start
@@ -45,6 +44,5 @@ Write your article in standard Markdown or MDX here...
 
 ## Customizing Assets
 
-- **Header Logo**: Place your custom graphic at `src/assets/dirthaven-logo.jpg` (or `.webp`).
-- **Background Texture**: Swap or adjust `src/assets/dirt-bg.jpg` (the original skull texture is also preserved at `src/assets/skull-bg.webp`).
-- **Styles**: Tweak color variables and card padding in `src/styles/global.css`.
+- **Header Logo**: `src/assets/dirthaven-logo.svg` (swap in any SVG with the same name).
+- **Styles**: Tweak color tokens (`--bleed`, `--strip`, `--link`, …) in `src/styles/global.css`.

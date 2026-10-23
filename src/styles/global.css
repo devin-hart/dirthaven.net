@@ -1,14 +1,27 @@
-/* ===== Theme Tokens (from oneclickkill.net) ===== */
+/* ===== Theme Tokens — raw demo-tape: washed black strip, muted red bleed ===== */
 :root {
-  --bg: #0b0f17;            /* page bg / overlays */
-  --panel: #0f1420;         /* card bg */
-  --panel-border: #1f2937;  /* card border */
-  --muted: #94a3b8;         /* subtle text */
-  --fg: #e5e7eb;            /* primary text */
-  --accent: #cbd5e1;        /* lines/accents */
-  --link: rgb(105, 101, 187); /* signature oneclickkill purple */
-  --link-hover: rgb(140, 135, 225);
-  --header-bg: rgba(255, 255, 255, .05);
+  --bleed: #5e1a22;          /* muted red outside the strip */
+  --bleed-deep: #2a0b0f;     /* red shadowed toward the strip / page edges */
+  --strip: #0e0c0c;          /* washed-out black content strip */
+  --strip-edge: #070606;     /* darkest black where strip meets red */
+  --panel: rgba(255, 240, 230, .025);
+  --panel-border: rgba(196, 67, 79, .22);
+  --rule: rgba(217, 210, 197, .1);
+  --fg: #d9d2c5;             /* bone / photocopy white */
+  --fg-strong: #ece6da;
+  --muted: #8a7f78;          /* faded toner grey */
+  --link: #c4434f;           /* muted blood red */
+  --link-hover: #ece6da;     /* bone on hover */
+  --strip-width: 760px;     /* solid core ~560px, the rest frays */
+  --type: "Special Elite", "Courier New", Courier, monospace;
+  --mono: Consolas, Monaco, monospace;
+
+  /* photocopy grain (SVG turbulence, no image request) */
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1.6 -.55'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  /* ragged, dithered edge mask for the strip */
+  --fray: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='760' height='640' preserveAspectRatio='none'%3E%3Cdefs%3E%3ClinearGradient id='g'%3E%3Cstop offset='0' stop-color='%23fff' stop-opacity='0'/%3E%3Cstop offset='.16' stop-color='%23fff' stop-opacity='1'/%3E%3Cstop offset='.84' stop-color='%23fff' stop-opacity='1'/%3E%3Cstop offset='1' stop-color='%23fff' stop-opacity='0'/%3E%3C/linearGradient%3E%3Cfilter id='r' x='0' y='0' width='1' height='1' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.01 .025' numOctaves='3' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='1 0 0 0 0 0 0 0 0 .5 0 0 0 0 0 0 0 0 0 1' result='w'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='w' scale='90' xChannelSelector='R' yChannelSelector='G' result='d'/%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.42' numOctaves='2' seed='9' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 3 0 0 0 -1' result='n'/%3E%3CfeComposite in='d' in2='n' operator='arithmetic' k2='3' k3='3' k4='-2.05'/%3E%3C/filter%3E%3ClinearGradient id='o'%3E%3Cstop offset='0' stop-color='white' stop-opacity='0'/%3E%3Cstop offset='.1' stop-color='white' stop-opacity='1'/%3E%3Cstop offset='.9' stop-color='white' stop-opacity='1'/%3E%3Cstop offset='1' stop-color='white' stop-opacity='0'/%3E%3C/linearGradient%3E%3Cmask id='m' maskContentUnits='userSpaceOnUse'%3E%3Crect width='760' height='640' fill='url%28%23o%29'/%3E%3C/mask%3E%3C/defs%3E%3Cg mask='url%28%23m%29'%3E%3Crect width='760' height='640' fill='url%28%23g%29' filter='url%28%23r%29'/%3E%3C/g%3E%3C/svg%3E");
+  /* coarse speckle for the red bleed */
+  --speckle: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='s'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.55' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2.4 1.25'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23s)'/%3E%3C/svg%3E");
 }
 
 /* ===== Base ===== */
@@ -23,12 +36,63 @@ html, body {
 }
 
 body {
+  position: relative;
+  min-height: 100vh;
   font-family: Arial, sans-serif;
-  color: #f2f2f2;
-  background: url("/src/assets/dirt-bg.jpg") no-repeat center center fixed, #000;
-  background-size: cover;
+  color: var(--fg);
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
+  /* red bleed: darker toward the outer edges and toward the strip */
+  background:
+    linear-gradient(90deg, transparent calc(50% - 680px), rgba(20, 5, 8, .25) calc(50% - 520px), rgba(20, 5, 8, .5) calc(50% - 380px), rgba(20, 5, 8, .5) calc(50% + 380px), rgba(20, 5, 8, .25) calc(50% + 520px), transparent calc(50% + 680px)),
+    radial-gradient(ellipse at center, transparent 30%, rgba(0, 0, 0, .55) 100%),
+    var(--bleed);
+}
+
+/* black speckle over the red, like toner dropout */
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--speckle);
+  opacity: .55;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* the black strip, full document height behind the content.
+   Wider than the column; the mask frays its edges into grainy, uneven toner. */
+body::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: var(--strip-width);
+  transform: translateX(-50%);
+  background: var(--grain), var(--strip);
+  -webkit-mask-image: var(--fray);
+  mask-image: var(--fray);
+  -webkit-mask-size: 100% 640px;
+  mask-size: 100% 640px;
+  -webkit-mask-repeat: repeat-y;
+  mask-repeat: repeat-y;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* narrow screens: strip fills the viewport, no fray eating the text */
+@media (max-width: 760px) {
+  body::after {
+    width: 100%;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+}
+
+::selection {
+  background: var(--link);
+  color: #0e0c0c;
 }
 
 p, h1, h2, h3, h4, h5, h6, a, span, time {
@@ -48,7 +112,6 @@ h1.logo-wrap img {
   display: block;
   width: 100%;
   height: auto;
-  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.7));
 }
 
 h2 {
@@ -86,6 +149,8 @@ th, td, span, p, a, input, button, time, label {
 
 /* ===== Layout ===== */
 .page {
+  position: relative;
+  z-index: 1;
   margin: 0 auto;
   max-width: 520px;
   min-height: 100vh;
@@ -101,7 +166,7 @@ th, td, span, p, a, input, button, time, label {
   justify-content: space-between;
   margin-bottom: 1.25rem;
   padding-bottom: 0.75rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid var(--panel-border);
 }
 
 .site-nav .nav-brand {
@@ -111,7 +176,7 @@ th, td, span, p, a, input, button, time, label {
 }
 
 .site-nav .nav-brand a {
-  color: #fff;
+  color: var(--fg-strong);
 }
 
 .site-nav .nav-links {
@@ -131,7 +196,7 @@ th, td, span, p, a, input, button, time, label {
 .site-footer {
   margin-top: auto;
   padding: 14px 0;
-  border-top: 1px solid rgba(255, 255, 255, .12);
+  border-top: 1px solid var(--panel-border);
 }
 
 .footer-links {
@@ -151,9 +216,9 @@ th, td, span, p, a, input, button, time, label {
 
 .footer-links li + li::before {
   content: "|";
-  opacity: .55;
+  opacity: .4;
   margin: 0 10px;
-  color: #fff;
+  color: var(--fg);
 }
 
 .footer-links a {
@@ -173,38 +238,47 @@ th, td, span, p, a, input, button, time, label {
   font-size: 11px;
 }
 
-/* ===== Cards & Panels (The oneclickkill translucent look) ===== */
-.dh-card, .q3-card {
-  background: rgba(0, 0, 0, .35);
-  border: 1px solid rgba(255, 255, 255, .06);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, .35);
+/* ===== Cards & Panels — flat, xeroxed, no glass ===== */
+.dh-card {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
   overflow: hidden;
   margin-bottom: 1rem;
 }
 
 .dh-card-head {
-  background: var(--header-bg);
-  backdrop-filter: blur(6px);
-  padding: 9px 12px;
+  padding: 7px 12px 6px;
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-between;
-  border-bottom: 1px solid rgba(255, 255, 255, .05);
+  border-bottom: 1px solid var(--panel-border);
+  background: rgba(196, 67, 79, .06);
 }
 
 .dh-card-head strong {
-  font-size: 13px;
-  color: #ddd;
-  letter-spacing: 0.3px;
+  font-family: var(--type);
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 1.2;
+  color: var(--link);
+  letter-spacing: 0.5px;
+  text-shadow: 1px 1px 2px #000;
 }
 
 .dh-card-head small {
   color: var(--muted);
   font-size: 11px;
+  text-transform: lowercase;
 }
 
 .dh-card-body {
   padding: 12px;
+}
+
+.dh-empty {
+  padding: 14px 12px;
+  margin: 0;
+  color: var(--muted);
 }
 
 /* Post list item */
@@ -212,7 +286,7 @@ th, td, span, p, a, input, button, time, label {
   display: flex;
   flex-direction: column;
   padding: 10px 12px;
-  border-bottom: 1px solid rgba(255, 255, 255, .04);
+  border-bottom: 1px solid var(--rule);
   transition: background 0.15s ease;
 }
 
@@ -221,7 +295,7 @@ th, td, span, p, a, input, button, time, label {
 }
 
 .post-item:hover {
-  background: rgba(255, 255, 255, .03);
+  background: rgba(196, 67, 79, .05);
 }
 
 .post-item-header {
@@ -245,7 +319,7 @@ th, td, span, p, a, input, button, time, label {
 
 .post-item-desc {
   margin: 4px 0 6px;
-  color: #cbd5e1;
+  color: var(--fg);
   font-size: 12px;
 }
 
@@ -256,11 +330,11 @@ th, td, span, p, a, input, button, time, label {
 }
 
 /* ===== Chips & Badges ===== */
-.dh-chip, .ock-chip {
+.dh-chip {
   font-size: 10px;
   border: 1px solid var(--panel-border);
   padding: 2px 6px;
-  background: rgba(255, 255, 255, .04);
+  background: transparent;
   color: var(--muted);
   text-decoration: none;
   display: inline-block;
@@ -269,7 +343,7 @@ th, td, span, p, a, input, button, time, label {
 
 a.dh-chip:hover {
   border-color: var(--link);
-  color: #fff;
+  color: var(--fg-strong);
   text-decoration: none;
 }
 
@@ -285,19 +359,25 @@ a.dh-chip:hover {
 }
 
 .prose h1, .prose h2, .prose h3 {
-  color: #fff;
+  color: var(--fg-strong);
 }
 
 .prose h2 {
-  font-size: 16px;
-  margin-top: 1.6rem;
+  font-family: var(--type);
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 1.25;
+  color: var(--link);
+  margin-top: 1.8rem;
   margin-bottom: 0.5rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid var(--panel-border);
   padding-bottom: 4px;
 }
 
 .prose h3 {
-  font-size: 14px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
   margin-top: 1.2rem;
   margin-bottom: 0.4rem;
 }
@@ -313,12 +393,20 @@ a.dh-chip:hover {
   margin-bottom: 4px;
 }
 
+.prose li::marker {
+  color: var(--link);
+}
+
+.prose strong {
+  color: var(--fg-strong);
+}
+
 .prose blockquote {
   margin: 1rem 0;
   padding: 8px 14px;
   border-left: 3px solid var(--link);
-  background: rgba(255, 255, 255, 0.03);
-  color: #cbd5e1;
+  background: rgba(196, 67, 79, .05);
+  color: var(--fg);
 }
 
 .prose blockquote p:last-child {
@@ -326,15 +414,15 @@ a.dh-chip:hover {
 }
 
 .prose code {
-  font-family: Consolas, Monaco, monospace;
+  font-family: var(--mono);
   font-size: 11.5px;
-  background: rgba(255, 255, 255, 0.07);
+  background: rgba(255, 240, 230, .05);
   padding: 2px 5px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--rule);
 }
 
 .prose pre {
-  background: #080c12 !important;
+  background: #060505 !important;
   border: 1px solid var(--panel-border);
   padding: 12px;
   overflow-x: auto;
@@ -348,16 +436,45 @@ a.dh-chip:hover {
   font-size: 12px;
 }
 
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 12px;
+}
+
+.prose th, .prose td {
+  text-align: left;
+  padding: 5px 8px;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: top;
+}
+
+.prose th {
+  color: var(--link);
+  font-weight: 600;
+  border-bottom-color: var(--panel-border);
+}
+
+.prose img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1rem 0;
+  border: 1px solid var(--panel-border);
+  filter: grayscale(.35) contrast(1.1);
+}
+
 .prose hr {
   border: 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid var(--panel-border);
   margin: 1.5rem 0;
 }
 
 /* ===== Buttons & Inputs ===== */
 .dh-btn {
-  background: rgba(255, 255, 255, .04);
-  border: 1px solid rgba(255, 255, 255, .06);
+  background: transparent;
+  border: 1px solid var(--panel-border);
   color: var(--fg);
   padding: 6px 12px;
   cursor: pointer;
@@ -366,7 +483,7 @@ a.dh-chip:hover {
 }
 
 .dh-btn:hover {
-  border-color: #334155;
-  color: #fff;
+  border-color: var(--link);
+  color: var(--fg-strong);
   text-decoration: none;
 }

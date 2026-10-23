@@ -7,52 +7,31 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
-<BaseLayout title="dirthaven.net" description="Music, art, creative projects, and notes from the underground.">
-  <div class="intro-block">
-    <p>
-      Welcome to <strong>dirt[haven]</strong>. A music and art blog, creative dumping ground, and digital outpost for random projects.
-    </p>
-    <p>
-      Built static, fast, and minimal. Inheriting the raw dark aesthetic of <a href="https://github.com/devin-hart/oneclickkill.net" target="_blank" rel="noopener noreferrer">one[click]kill</a>.
-    </p>
-  </div>
-
+<BaseLayout title="dirthaven.net" description="Music, art, and creative projects from the underground.">
   <section class="dh-card">
     <div class="dh-card-head">
-      <strong>Recent Entries</strong>
+      <strong>Entries</strong>
       <small>{posts.length} article{posts.length === 1 ? '' : 's'}</small>
     </div>
-    <div class="posts-list">
-      {posts.map((post) => (
-        <PostCard
-          title={post.data.title}
-          description={post.data.description}
-          pubDate={post.data.pubDate}
-          slug={post.id}
-          tags={post.data.tags}
-        />
-      ))}
-    </div>
-  </section>
-
-  <section class="dh-card">
-    <div class="dh-card-head">
-      <strong>Quick Dispatch</strong>
-      <small>dirthaven status</small>
-    </div>
-    <div class="dh-card-body">
-      <p style="margin-bottom: 0.5rem;">
-        Currently transitioning from legacy servers to lightweight static architecture. 
-        Read more in the <a href="/about">[about]</a> section or subscribe via <a href="/rss.xml">[rss]</a>.
-      </p>
-    </div>
+    {posts.length > 0 ? (
+      <div class="posts-list">
+        {posts.map((post) => (
+          <PostCard
+            title={post.data.title}
+            description={post.data.description}
+            pubDate={post.data.pubDate}
+            slug={post.id}
+            tags={post.data.tags}
+          />
+        ))}
+      </div>
+    ) : (
+      <p class="dh-empty">Nothing here yet.</p>
+    )}
   </section>
 </BaseLayout>
 
 <style>
-  .intro-block {
-    margin-bottom: 1.25rem;
-  }
   .posts-list {
     display: flex;
     flex-direction: column;

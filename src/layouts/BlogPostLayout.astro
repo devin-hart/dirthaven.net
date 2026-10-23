@@ -15,6 +15,7 @@ const formattedPubDate = pubDate.toLocaleDateString('en-US', {
   year: 'numeric',
   month: 'long',
   day: 'numeric',
+  timeZone: 'UTC',
 });
 ---
 
@@ -59,7 +60,11 @@ const formattedPubDate = pubDate.toLocaleDateString('en-US', {
     margin-bottom: 1rem;
   }
   .article-header h1 {
-    font-size: 20px;
+    font-family: var(--type);
+    font-weight: normal;
+    font-size: 26px;
+    line-height: 1.15;
+    color: var(--link);
     margin-top: 0.25rem;
     margin-bottom: 0.5rem;
   }
@@ -72,6 +77,6 @@ const formattedPubDate = pubDate.toLocaleDateString('en-US', {
   .article-footer {
     margin-top: 2rem;
     padding-top: 1rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 1px solid var(--panel-border);
   }
 </style>
