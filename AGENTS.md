@@ -31,7 +31,7 @@ Project size: **Ongoing** → AGENTS.md + SPEC.md + git.
 | `src/components/Footer.astro` | Pipe-separated footer links. |
 | `src/components/PostCard.astro` | Post preview card for listings. |
 | `src/styles/global.css` | All site styles and color tokens. |
-| `src/assets/` | Logo (`dirthaven-logo.svg`, procedurally generated vein-web wordmark); `dirthaven-logo.png/.jpg`, `dirt-bg.jpg`, `skull-bg.webp` are unused legacy. |
+| `src/assets/` | Logo (`dirthaven-logo.svg`, vein-web wordmark) and home-page photo (`doll.jpg`). |
 | `vercel.json` | Headers, plain-text type for `/ai`, `ai.dirthaven.net` + legacy `/ai-persona*` redirects. |
 | `SPEC.md` | Mission, design system, roadmap, decisions log. |
 
